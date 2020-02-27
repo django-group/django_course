@@ -16,3 +16,11 @@ def asd(request):
     {{ item.surname }}
 {% endfor %}
 """
+
+def model_view(request):
+    # взять все
+    models.Author.objects.all()
+    # взять ОДНУ запись(в этом случае поиск по id)
+    models.Author.objects.get(id=1)
+    # взять несколько (в этом случае поиск всех записей у которых name='name')
+    models.Author.objects.filter(name='name')
