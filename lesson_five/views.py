@@ -3,14 +3,13 @@ from django.views import generic
 
 from lesson_five import forms
 
-
 def search_form(request):
     return render(request, 'lesson_five/search_form.html')
 
 
 def search(request):
     if request.method == "GET":
-        if 'q' in request.GET:
+        if request.GET.get('q'):
             return HttpResponse("Вы хотели найти %s" % request.GET['q'])
         else:
             return HttpResponse("Вы отправили пустую форму")
@@ -43,9 +42,8 @@ def form(request):
 
 
 def author_add(request):
-    form = forms.AuthorOneForm(request.POST)
-
     if request.method == "POST":
+        form = forms.AuthorOneForm(request.POST)
 
         if form.is_valid():
             data = form.cleaned_data
@@ -58,16 +56,21 @@ def add_article(request):
     form = forms.ArticleForm(request.POST)
 
     if request.method == "POST" and form.is_valid():
-        data = form.cleaned_data
-        print(data)
         form.save()
         return HttpResponse("Статья добавлена!")
 
 
-def contact_form(request):
-    form = forms.ContactForm
-    return render(request, 'lesson_five/contact_form.html', {'form': form})
-
+# def contact_form(request):
+#     if request.method == 'GET':
+#         form = forms.ContactForm
+#         return render(request, 'lesson_five/contact_form.html', {'form': form})
+#     if request.method == 'POST':
+#         form = forms.ContactForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse('Done!')
+#         else:
+#             return HttpResponse('ASD')
 
 class ContactFormView(generic.TemplateView):
 
