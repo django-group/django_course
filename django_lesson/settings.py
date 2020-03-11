@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'lesson_four',
     'lesson_five',
     'lesson_seven',
+    'lesson_eight',
+    'lesson_nine',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,13 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_URL = '/accounts/login'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')  # add STATIC_ROOT to DIRS
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, 'media')
+)
+

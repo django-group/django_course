@@ -1,0 +1,19 @@
+{% extends 'lesson_nine/base.html' %}
+
+{% block content %}
+    {% for review in object_list %}
+        <p>{{ review.rating }}</p>
+        <h4>Плюсы:</h4>
+        <p>{{ review.good }}</p>
+        <h4>Минусы:</h4>
+        <p>{{ review.bad }}</p>
+        <h4>Отзыв:</h4>
+        <p>{{ review.text }}</p>
+        <hr>
+    {% endfor %}
+    <ul>
+        {% for page in paginator.page_range %}
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

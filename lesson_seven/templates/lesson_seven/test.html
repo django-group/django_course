@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<br>
+    <p>Author: {{data.author.name}}</p>
+    <p>{{data.title}}</p>
+    <p>{{data.text}}</p>
+    <p>{{data.create_d}}</p> </br>
+
+    <p>Comments:</p>
+    {% for item in comments %}
+    <li>{{ item.text }}</li>
+    {% endfor %}
+
+    <form action="{% url 'test' %}" method="post">
+        {% csrf_token %}
+        {{ form_comment.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

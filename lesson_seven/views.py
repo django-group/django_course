@@ -2,14 +2,17 @@ from django.shortcuts import render, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from lesson_seven import forms
+
 
 def test_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-
-    user = User.objects.create_user(username=username, password=password)
-
-    user.save()
+    form_comment = forms.CommentForm(request.POST)
+    if request.method == "POST":
+        form_comment.save()
+    context = {
+        "form_comment": form_comment
+    }
+    return render(request, 'lesson_seven/test.html', context)
 
 
 def auth_test(request):

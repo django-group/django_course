@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src = "{% static 'js/javascript.js' %}"></script>
+</head>
+<body>
+    <script>
+      {{script}}
+    </script>
+
+
+    <h1>Hello ajax!</h1>
+    {% if user.is_authenticated  %}
+        <a href="{% url 'logout' %}">выйти({{user.username}})</a>
+    {% else %}
+        <a href="{% url 'register' %}">Регистрация на сайте</a>
+        <a href="{% url 'login' %}">Авторизация</a>
+    {% endif %}
+    <div class="">{% block login%} {% endblock %}</div>
+
+
+    {% if user.is_authenticated %}
+        <table id='table_id'>
+            <tr>
+                <td>Имя</td>
+                <td>Фамилия</td>
+                <td>Дата рождения</td>
+                <td>Компания</td>
+                <td>Должность</td>
+                <td>Язык программирования</td>
+                <td>Зарплата</td>
+           </tr>
+        {% for elem in humans %}
+            <tr>
+                <td>{{elem.name}}</td>
+                <td>{{elem.surname}}</td>
+                <td>{{elem.birth}}</td>
+                <td>{{elem.company}}</td>
+                <td>{{elem.position}}</td>
+                <td>{{elem.language}}</td>
+                <td>{{elem.salary}}</td>
+            </tr>
+        {% endfor %}
+
+
+        </table>
+
+        <form id = 'add-human' action="{% url 'add_human' %}" method = 'post'>
+            {% csrf_token %}
+
+            {% for field in human_form %}
+                <label>{{field.label}}</label>
+                <div>{{field}}</div>
+            {% endfor %}
+            <button type = 'submit'>Добавить в таблицу</button>
+        </form>
+        <a href="{% url 'show_three' %}" id = 'show-three' >Показать первые 3 записи</a>
+        <a href ="{% url 'show_four' %}" id = 'show-four' >Показать первые 4 записи</a>
+    {% endif %}
+
+</body>
+</html>

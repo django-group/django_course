@@ -1,0 +1,37 @@
+{% extends 'lesson_nine/base.html' %}
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image.url }}">
+    <h2>{{ product.price }}</h2>
+    <br>
+    <h4>{{ product.description }}</h4>
+    <br>
+    {% if item.in_stock %}
+        <h4>Есть в наличии</h4>
+    {% else %}
+        <h4>Нет в наличии</h4>
+    {% endif %}
+    <br>
+    <h4>{{ product.rating }}</h4>
+    <br>
+    <h1>Комментарии: </h1>
+    {% for review in product.get_comments %}
+        {% if forloop.counter < 3 %}
+            <p>{{ review.rating }}</p>
+            <h4>Плюсы:</h4>
+            <p>{{ review.good }}</p>
+            <h4>Минусы:</h4>
+            <p>{{ review.bad }}</p>
+            <h4>Отзыв:</h4>
+            <p>{{ review.text }}</p>
+            <hr>
+        {% endif %}
+    {% endfor %}
+    <a href="{% url 'review_list_url' product.slug %}">Посмотреть все отзывы</a>\
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Оставить комментарий</button>
+    </form>
+{% endblock %}

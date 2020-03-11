@@ -1,0 +1,24 @@
+{% extends 'lesson_nine/base.html' %}
+
+{% block content %}
+    <form method="get" action="{% url 'search_url'  %}">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% for item in object_list %}
+        <div>
+        <a href="{% url 'product_detail_url' item.slug %}">
+            <img src="{{ item.image.url }}">
+            <h3>{{ item.name }}</h3>
+            <h4>{{ item.rating }}</h4>
+            <h4>{{ item.price }}</h4>
+            {% if item.in_stock %}
+                <h4>Есть в наличии</h4>
+            {% else %}
+                <h4>Нет в наличии</h4>
+            {% endif %}
+        </a>
+        </div>
+    {% endfor %}
+{% endblock %}
