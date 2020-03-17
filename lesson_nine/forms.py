@@ -1,10 +1,11 @@
 from django import forms
+import django_filters
 
 from lesson_nine import models
 
 
 class SearchForm(forms.Form):
-    search_field = forms.CharField(max_length=100)
+    search_field = forms.CharField(max_length=100, help_text='Write some request')
 
 
 class CommentCreateForm(forms.ModelForm):

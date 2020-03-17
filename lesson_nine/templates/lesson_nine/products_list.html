@@ -1,10 +1,16 @@
 {% extends 'lesson_nine/base.html' %}
 
 {% block content %}
-    <form method="get" action="{% url 'search_url'  %}">
+    <form method="get">
         {{ form.as_p }}
         <button type="submit">Search</button>
     </form>
+    <hr>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    <hr>
 
     {% for item in object_list %}
         <div>

@@ -5,8 +5,7 @@ from django.urls import reverse
 
 from lesson_nine import models
 from lesson_nine import forms
-
-
+from lesson_nine import filters
 
 
 class ProductDetail(generic.DetailView):
@@ -63,12 +62,18 @@ class SearchView(generic.ListView):
 
 class ProductList(generic.ListView):
     form = forms.SearchForm
+    filter = filters.ProductFilter
     model = models.Product
     template_name = 'lesson_nine/products_list.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        object_list = self.filter(self.request.GET, queryset=self.model.objects.all())
+
+        context['object_list'] = object_list.qs
         context['form'] = self.form
+        context['filter'] = self.filter
         return context
 #
 #
