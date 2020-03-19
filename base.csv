@@ -1,0 +1,2 @@
+name,description,image,price,rating,slug,category,in_stock
+test_product,description of test product,images/hator_htc_912_images_15985843273.jpg,1234.3,0,,home_tech,True

@@ -1,0 +1,13 @@
+{% extends 'lesson_nine/base.html' %}
+
+{% block content %}
+    {% if not product %}
+        <h1>Your bucket is empty</h1>
+    {% else %}
+        {% for item in product %}
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+            <hr>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

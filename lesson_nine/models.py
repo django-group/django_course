@@ -60,3 +60,11 @@ class Review(models.Model):
     good = models.TextField(default='...')
     bad = models.TextField(default='...')
     text = models.TextField()
+
+
+class Bucket(models.Model):
+    session_key = models.CharField(max_length=100)
+    product = models.ManyToManyField(Product)
+
+    # product = [first, second, third, four]
+    # product = first
