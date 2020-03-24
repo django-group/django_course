@@ -28,4 +28,5 @@ urlpatterns = [
     path('lesson_seven/', include('lesson_seven.urls')),
     path('lesson_eight/', include('lesson_eight.urls')),
     path('lesson_nine/', include('lesson_nine.urls')),
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

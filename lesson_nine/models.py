@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
-# Create your models here.
 
 # CATEGORIES = [
 #     ('pc', 'Ноутбуки и компьютеры'),
@@ -66,5 +66,8 @@ class Bucket(models.Model):
     session_key = models.CharField(max_length=100)
     product = models.ManyToManyField(Product)
 
-    # product = [first, second, third, four]
-    # product = first
+
+class UserProfile(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=100, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)

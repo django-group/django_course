@@ -12,4 +12,5 @@ urlpatterns = [
     path('create_product/', views.CreateProductView.as_view(), name='create_product_url'),
     path('bucket/', views.bucket_view, name='bucket_url'),
     path('bucket/<slug:slug>/', views.add_to_bucket, name='add_to_bucket_url'),
+    path('profile/', views.user_page, name='profile'),
     ]

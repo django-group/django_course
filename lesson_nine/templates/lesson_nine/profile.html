@@ -1,0 +1,10 @@
+{% extends 'lesson_nine/base.html' %}
+
+{% block content %}
+    {{ profile.name }}
+    {{ profile.phone }}
+    <hr>
+    {{ profile.user.date_joined }}
+    {{ profile.user.email }}
+    {{ profile.user.username }}
+{% endblock %}

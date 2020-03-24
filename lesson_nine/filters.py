@@ -19,7 +19,8 @@ class ProductFilter(django_filters.FilterSet):
                                            choices=ORDER_CHOICE,
                                            method='filter_by_order')
 
-    category = django_filters.ModelMultipleChoiceFilter(queryset=models.Categories.objects.all())
+    # category = django_filters.ModelMultipleChoiceFilter(queryset=models.Categories.objects.all())
+    category1 = django_filters.ModelChoiceFilter(queryset=models.Categories.objects.all())
 
     class Meta:
         model = models.Product

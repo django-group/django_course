@@ -1,5 +1,6 @@
 from django import forms
 import django_filters
+from django.contrib.auth.models import User
 
 from lesson_nine import models
 
@@ -18,3 +19,8 @@ class ProductCreateForm(forms.ModelForm):
     class Meta:
         model = models.Product
         fields = ['name', 'description', 'image', 'price', 'category']
+
+
+class SignupForm(forms.ModelForm):
+    class Meta:
+        models = User
